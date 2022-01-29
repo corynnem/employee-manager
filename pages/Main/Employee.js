@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Employee = () => {
+const Employee = ({employees, setEmployees}) => {
     const classes = useStyles();
-    const [employees, setEmployees] = useState([])
+
     const [open, setOpen] = useState(false);
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -55,12 +55,13 @@ const Employee = () => {
         if(storedEmployees !== null && storedEmployees.length > 0 ) {
             let allEmployees = [...storedEmployees, {firstName: firstName, lastName: lastName, email: email}]
             localStorage.setItem('employees', JSON.stringify(allEmployees))
+            setEmployees(allEmployees)
         } else {
             let allEmployees = [{firstName: firstName, lastName: lastName, email: email}]
             localStorage.setItem('employees', JSON.stringify(allEmployees))
+            setEmployees(allEmployees)
         }
         handleClose() 
-        window.location.reload()
     }
 
     useEffect(() => {
@@ -78,8 +79,8 @@ const Employee = () => {
                         return <div key={index}>
                             <ListItem button>
                                 <ListItemText primary={`${employee.firstName} ${employee.lastName}`}  secondary={employee.email}/>
-                                <UpdateEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}}/>
-                                <DeleteEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}}/>
+                                <UpdateEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}} setEmployees={setEmployees}/>
+                                <DeleteEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}} setEmployees={setEmployees}/>
                             </ListItem>
                             <Divider />
                         </div>
@@ -140,7 +141,7 @@ const Employee = () => {
                             Cancel
                         </Button>
                         <Button onClick={handleSubmit} color="primary">
-                            Subscribe
+                            Submit
                         </Button>
                     </DialogActions>
                 </Dialog>

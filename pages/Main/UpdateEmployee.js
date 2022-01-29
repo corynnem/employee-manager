@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import { Edit } from '@material-ui/icons';
 
-const UpdateEmployee = ({ employee }) => {
+const UpdateEmployee = ({ employee, setEmployees }) => {
     const [open, setOpen] = useState(false)
     const [firstName, setFirstName] = useState(employee.firstName)
     const [lastName, setLastName] = useState(employee.lastName)
@@ -29,7 +29,7 @@ const UpdateEmployee = ({ employee }) => {
         })
         newEmployees.push({ firstName: firstName, lastName: lastName, email: email })
         localStorage.setItem('employees', JSON.stringify(newEmployees))
-        window.location.reload()
+        setEmployees(newEmployees)
         setOpen(false);
     }
 
@@ -40,7 +40,7 @@ const UpdateEmployee = ({ employee }) => {
             <Edit onClick={handleClickOpen} />
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add Employee</DialogTitle>
+                <DialogTitle id="form-dialog-title">Update Employee</DialogTitle>
                 <DialogContent>
 
                     <TextField
@@ -76,7 +76,7 @@ const UpdateEmployee = ({ employee }) => {
                         Cancel
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Subscribe
+                        Submit
                     </Button>
                 </DialogActions>
             </Dialog>
