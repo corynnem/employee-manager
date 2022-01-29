@@ -12,8 +12,9 @@ import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import { Edit } from '@material-ui/icons';
-import { Delete } from '@material-ui/icons';
+import UpdateEmployee from './UpdateEmployee';
+import DeleteEmployee from './DeleteEmployee';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,6 @@ const Employee = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [loaded, setLoaded] = useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -50,7 +50,6 @@ const Employee = () => {
 
     // console.log(JSON.parse(storedEmployees))
     const handleSubmit = (e) => {
-        setLoaded(false)
         let storedEmployees = JSON.parse(localStorage.getItem('employees'))
         console.log(storedEmployees)
         if(storedEmployees !== null && storedEmployees.length > 0 ) {
@@ -61,17 +60,12 @@ const Employee = () => {
             localStorage.setItem('employees', JSON.stringify(allEmployees))
         }
         handleClose() 
-        setLoaded(true)
+        window.location.reload()
     }
 
     useEffect(() => {
         let employeesInStorage = localStorage.getItem('employees')
-        console.log(JSON.parse(localStorage.getItem('employees')))
         employeesInStorage !== null && employeesInStorage.length > 0 ? setEmployees(JSON.parse(employeesInStorage)) : setEmployees([])
-        setTimeout(() => {
-            console.log(employees)
-            setLoaded(true)
-        }, 1000)
   
     }, [])
 
@@ -84,8 +78,8 @@ const Employee = () => {
                         return <div key={index}>
                             <ListItem button>
                                 <ListItemText primary={`${employee.firstName} ${employee.lastName}`}  secondary={employee.email}/>
-                                <Edit/>
-                                <Delete/>
+                                <UpdateEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}}/>
+                                <DeleteEmployee employee={{index: index, firstName: employee.firstName, lastName: employee.lastName, email: employee.email}}/>
                             </ListItem>
                             <Divider />
                         </div>
@@ -93,7 +87,7 @@ const Employee = () => {
                 }
 
 
-
+                <br/>
                 <Fab
                     variant="extended"
                     size="medium"
