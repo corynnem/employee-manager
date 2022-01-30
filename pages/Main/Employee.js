@@ -68,7 +68,7 @@ const Employee = ({employees, setEmployees}) => {
         let employeesInStorage = localStorage.getItem('employees')
         employeesInStorage !== null && employeesInStorage.length > 0 ? setEmployees(JSON.parse(employeesInStorage)) : setEmployees([])
   
-    }, [])
+    }, [setEmployees])
 
     return (
         <div className={classes.root}>
