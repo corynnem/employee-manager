@@ -24,3 +24,9 @@ npm run dev
 
 
 ## Congratulations! You are now ready to navigate the employee manager application.
+
+
+### If you are interested in the build process of this application, feel free to view the preparatory materials below 
+
+- [Project Requirements](https://docs.google.com/document/d/1geiJAjerFuFcWhMN0UeSLFlFpPOgTk3wn59TbHmmCsM/edit?usp=sharing)
+- [Figma Board](https://www.figma.com/file/25TbHI4xN66OYLwmp2qaoQ/Structural-Project?node-id=0%3A1)
