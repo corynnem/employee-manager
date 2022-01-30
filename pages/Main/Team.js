@@ -201,7 +201,7 @@ const Team = ({ employees }) => {
                                 fullWidth
                                 onChange={(e) => setAssignedProject(e.target.value)}
                             />
-                            <label for="cars">Choose an employee:</label>
+                            <label htmlFor="cars">Choose an employee:</label>
 
                             <select name="employees" id="dropdown" onChange={(e) => setAssignedMembers([...assignedMembers, e.target.value])}>
                                 {
