@@ -205,8 +205,8 @@ const Team = ({ employees }) => {
 
                             <select name="employees" id="dropdown" onChange={(e) => setAssignedMembers([...assignedMembers, e.target.value])}>
                                 {
-                                    employees.map((employee) => {
-                                        return <option value={`${employee.firstName} ${employee.lastName}`}> {employee.firstName} {employee.lastName}</option>
+                                    employees.map((employee, i) => {
+                                        return <option key={i} value={`${employee.firstName} ${employee.lastName}`}> {employee.firstName} {employee.lastName}</option>
                                     })
                                 }
                             </select>
