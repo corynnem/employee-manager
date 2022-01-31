@@ -72,7 +72,7 @@ const Employee = ({employees, setEmployees}) => {
 
     return (
         <div className={classes.root}>
-            <Paper elevation={3} >
+            <Paper elevation={3}  style={{height: '72vh'}}>
                 <h1>Employees</h1>
                 {
                     employees.map((employee, index) => {
